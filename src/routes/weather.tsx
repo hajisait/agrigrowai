@@ -140,7 +140,7 @@ export function WeatherPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. Coimbatore, Punjab, Bali…"
+              placeholder="Village, district, city or PIN (e.g. Nashik, Coimbatore)…"
               className="w-full bg-white/70 border border-white/80 rounded-full pl-11 pr-5 py-3 text-sm outline-none focus:border-primary/50 focus:bg-white"
             />
           </div>
