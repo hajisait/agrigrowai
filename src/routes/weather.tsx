@@ -166,6 +166,22 @@ export function WeatherPage() {
           <p className="text-center text-sm text-destructive mb-6">{error}</p>
         ) : null}
 
+        {suggestions.length > 0 ? (
+          <div className="max-w-3xl mx-auto mb-6 flex flex-wrap gap-2 justify-center">
+            <span className="text-xs text-foreground/50 self-center mr-1">Other matches:</span>
+            {suggestions.map((s) => (
+              <button
+                key={`${s.latitude},${s.longitude}`}
+                type="button"
+                onClick={() => { void loadWeather(s); setSuggestions([]); }}
+                className="rounded-full bg-white/70 hover:bg-white border border-white/80 px-3 py-1.5 text-xs font-semibold"
+              >
+                {s.name}{s.admin1 ? `, ${s.admin1}` : ""}
+              </button>
+            ))}
+          </div>
+        ) : null}
+
         {place && current ? (
           <div className="grid md:grid-cols-3 gap-5 animate-fade-up">
             <div className="md:col-span-2 glass-panel rounded-[2rem] p-8">
