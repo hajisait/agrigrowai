@@ -72,7 +72,7 @@ const STRINGS: Record<Lang, Dict> = {
     "page.disease.title": "फसल रोग पहचान",
     "page.disease.subtitle": "एआई निदान और उपचार सलाह के लिए साफ फसल फोटो अपलोड करें।",
     "page.market.title": "मंडी भाव",
-    "page.market.subtitle": "भारत भर के बैकएंड-संचालित मंडी रुझान",
+    "page.market.subtitle": "पूरे भारत की लाइव मंडी जानकारी",
     "page.schemes.title": "सरकारी योजनाएँ",
     "page.schemes.subtitle": "सब्सिडी, बीमा और किसान सहायता योजनाएँ खोजें।",
   },
