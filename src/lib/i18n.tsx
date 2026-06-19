@@ -66,7 +66,7 @@ const STRINGS: Record<Lang, Dict> = {
     "weather.locating": "स्थान खोज रहे हैं…",
     "weather.setlocation": "मौसम पेज पर स्थान चुनें",
     "page.assistant.title": "एग्रीएआई से कुछ भी पूछें",
-    "page.assistant.subtitle": "बैकएंड से चलने वाली एआई कृषि सलाह · आपकी भाषा में उत्तर",
+    "page.assistant.subtitle": "स्मार्ट एआई कृषि सलाह · आपकी भाषा में उत्तर",
     "page.weather.title": "लाइव जलवायु और मौसम",
     "page.weather.subtitle": "गाँव या शहर खोजें और डैशबोर्ड से सिंक करें",
     "page.disease.title": "फसल रोग पहचान",
