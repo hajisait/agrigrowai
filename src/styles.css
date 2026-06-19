@@ -38,7 +38,8 @@
   --color-sky-brand: var(--sky-brand);
   --color-amber-brand: var(--amber-brand);
 
-  --font-sans: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Malayalam', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Malayalam', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Sora', 'Manrope', 'Noto Sans Devanagari', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --shadow-glass: 0 8px 32px 0 oklch(0.45 0.10 230 / 0.10);
