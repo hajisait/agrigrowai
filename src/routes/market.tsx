@@ -138,12 +138,12 @@ export function MarketPage() {
                     />
                   </svg>
                   <a
-                    href={`https://www.enam.gov.in/web/dashboard/trade-data?commodity=${encodeURIComponent(c.name)}`}
+                    href={`https://agmarknet.gov.in/SearchCmmMkt.aspx?Tx_Commodity=0&Tx_State=0&Tx_District=0&Tx_Market=0&DateFrom=&DateTo=&Fr_Date=&To_Date=&Tx_Trend=0&Tx_CommodityHead=${encodeURIComponent(c.name)}&Tx_StateHead=--Select--&Tx_DistrictHead=--Select--&Tx_MarketHead=--Select--`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto inline-flex items-center justify-center gap-1.5 text-xs font-bold text-primary bg-primary/10 hover:bg-primary/15 rounded-full py-2.5 transition"
                   >
-                    View on e-NAM <ExternalLink className="size-3" />
+                    View on Agmarknet <ExternalLink className="size-3" />
                   </a>
                 </div>
               );
