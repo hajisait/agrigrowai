@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Search, CloudSun, Droplets, Wind, Thermometer, MapPin, LocateFixed } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { geocodePlace, getWeather, reverseGeocode, type WeatherData } from "@/lib/api-client";
+import { geocodePlace, geocodePlaces, getWeather, reverseGeocode, type WeatherData } from "@/lib/api-client";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/weather")({
