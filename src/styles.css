@@ -140,7 +140,14 @@
 .animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-sun-glow { animation: sun-glow 10s ease-in-out infinite; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 15px; }
+@media (min-width: 768px) { html { font-size: 16px; } }
 * { -webkit-tap-highlight-color: transparent; }
 body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 a, button { transition: all 0.25s cubic-bezier(0.16,1,0.3,1); }
+/* Indic scripts need normal tracking — tighter spacing breaks ligature rendering */
+:lang(hi), :lang(ta), :lang(te), :lang(ml),
+html[data-lang="HI"] *, html[data-lang="TA"] *, html[data-lang="TE"] *, html[data-lang="ML"] * {
+  letter-spacing: normal !important;
+  word-spacing: 0.02em;
+}

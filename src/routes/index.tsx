@@ -44,11 +44,11 @@ export function Landing() {
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/70 border border-white/80 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
               {t("hero.badge")}
             </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-balance leading-[0.92]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-balance leading-[1.05] md:leading-[0.92]">
               <span className="block">{t("hero.title")}</span>
-              <span className="block text-[color:var(--sky-brand)] mt-2">{t("hero.titleAccent")}</span>
+              <span className="block text-[color:var(--sky-brand)] mt-1 md:mt-2">{t("hero.titleAccent")}</span>
             </h1>
-            <p className="max-w-xl mx-auto text-base md:text-lg text-foreground/70 text-pretty font-medium">
+            <p className="max-w-xl mx-auto text-sm sm:text-base md:text-lg text-foreground/70 text-pretty font-medium px-2">
               {t("hero.sub")}
             </p>
 

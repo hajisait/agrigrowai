@@ -194,6 +194,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     if (saved && LANGS.includes(saved)) setLangState(saved);
   }, []);
 
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const map: Record<Lang, string> = { EN: "en", HI: "hi", TA: "ta", TE: "te", ML: "ml" };
+    document.documentElement.lang = map[lang];
+    document.documentElement.dataset.lang = lang;
+  }, [lang]);
+
   const setLang = useCallback((l: Lang) => {
     setLangState(l);
     try {
