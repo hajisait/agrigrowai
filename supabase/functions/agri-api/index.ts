@@ -66,7 +66,30 @@ function sanitizeUserText(input: string) {
 }
 
 function languageName(code?: string) {
-  return ({ HI: "Hindi", TA: "Tamil", TE: "Telugu", ML: "Malayalam", EN: "English" } as Record<string, string>)[String(code ?? "EN").toUpperCase()] ?? code ?? "English";
+  const map: Record<string, string> = { HI: "Hindi", TA: "Tamil", TE: "Telugu", ML: "Malayalam", EN: "English" };
+  const raw = String(code ?? "EN");
+  if (!/^[a-zA-Z-]{2,20}$/.test(raw)) return "English";
+  return map[raw.toUpperCase()] ?? "English";
+}
+
+// Simple per-IP rate limiter for the AI `ask` action (in-memory; per-isolate)
+const ASK_RATE_LIMIT = 12; // requests
+const ASK_RATE_WINDOW_MS = 60_000; // per minute
+const askHits = new Map<string, { count: number; resetAt: number }>();
+function checkAskRateLimit(ip: string) {
+  const now = Date.now();
+  const entry = askHits.get(ip);
+  if (!entry || entry.resetAt < now) {
+    askHits.set(ip, { count: 1, resetAt: now + ASK_RATE_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= ASK_RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+function clientIp(req: Request) {
+  const xff = req.headers.get("x-forwarded-for") ?? "";
+  return xff.split(",")[0].trim() || req.headers.get("cf-connecting-ip") || req.headers.get("x-real-ip") || "unknown";
 }
 
 function nearestFallback(latitude: number, longitude: number) {
