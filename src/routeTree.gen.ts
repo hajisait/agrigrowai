@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as DiseaseRouteImport } from './routes/disease'
+import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SchemesRoute = SchemesRouteImport.update({
+  id: '/schemes',
+  path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiseaseRoute = DiseaseRouteImport.update({
+  id: '/disease',
+  path: '/disease',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,96 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/disease': typeof DiseaseRoute
+  '/market': typeof MarketRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/disease': typeof DiseaseRoute
+  '/market': typeof MarketRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assistant': typeof AssistantRoute
+  '/disease': typeof DiseaseRoute
+  '/market': typeof MarketRoute
+  '/schemes': typeof SchemesRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/disease'
+    | '/market'
+    | '/schemes'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/assistant' | '/disease' | '/market' | '/schemes' | '/weather'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/disease'
+    | '/market'
+    | '/schemes'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssistantRoute: typeof AssistantRoute
+  DiseaseRoute: typeof DiseaseRoute
+  MarketRoute: typeof MarketRoute
+  SchemesRoute: typeof SchemesRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/schemes': {
+      id: '/schemes'
+      path: '/schemes'
+      fullPath: '/schemes'
+      preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disease': {
+      id: '/disease'
+      path: '/disease'
+      fullPath: '/disease'
+      preLoaderRoute: typeof DiseaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +151,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssistantRoute: AssistantRoute,
+  DiseaseRoute: DiseaseRoute,
+  MarketRoute: MarketRoute,
+  SchemesRoute: SchemesRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
