@@ -36,6 +36,7 @@ export function WeatherPage() {
   const [daily, setDaily] = useState<WeatherData["daily"] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<Place[]>([]);
 
   async function loadWeather(p: Place) {
     setPlace(p);
