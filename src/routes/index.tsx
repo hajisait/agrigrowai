@@ -296,7 +296,7 @@ function DashboardSchemes() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Government Support</h2>
-            <p className="mt-2 text-sm text-foreground/60">Backend-powered scheme finder with official application links.</p>
+            <p className="mt-2 text-sm text-foreground/60">Curated scheme finder with official application links.</p>
           </div>
           <Link to="/schemes" className="rounded-full bg-white/80 px-5 py-2 text-sm font-bold text-primary border border-foreground/5 hover:bg-white">
             Browse All Schemes
