@@ -38,7 +38,8 @@
   --color-sky-brand: var(--sky-brand);
   --color-amber-brand: var(--amber-brand);
 
-  --font-sans: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Malayalam', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Malayalam', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Sora', 'Manrope', 'Noto Sans Devanagari', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --shadow-glass: 0 8px 32px 0 oklch(0.45 0.10 230 / 0.10);
@@ -127,6 +128,22 @@
     border: 1px solid oklch(1 0 0 / 0.7);
     box-shadow: var(--shadow-glass);
   }
+  .dark .glass-panel {
+    background: oklch(0.28 0.03 165 / 0.55);
+    border-color: oklch(1 0 0 / 0.08);
+  }
+  .dark .glass-panel-strong {
+    background: oklch(0.26 0.03 165 / 0.75);
+    border-color: oklch(1 0 0 / 0.10);
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.015em; }
+}
+
+.dark body {
+  background:
+    radial-gradient(1200px 600px at 90% -10%, oklch(0.40 0.10 230 / 0.25), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, oklch(0.55 0.14 142 / 0.18), transparent 60%),
+    linear-gradient(180deg, oklch(0.18 0.03 220) 0%, oklch(0.20 0.03 165) 55%, oklch(0.18 0.03 200) 100%);
 }
 
 @keyframes fade-up {

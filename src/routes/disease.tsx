@@ -84,7 +84,7 @@ export function DiseasePage() {
               <div>
                 <label className="text-[11px] uppercase font-bold tracking-widest text-foreground/50">Crop</label>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {["Rice", "Wheat", "Tomato", "Cotton", "Onion", "Potato", "Maize", "Sugarcane"].map((c) => (
+                  {["Rice", "Wheat", "Tomato", "Cotton", "Onion", "Potato", "Maize", "Sugarcane", "Brinjal", "Chilli", "Banana", "Groundnut", "Soybean", "Mango", "Grapes"].map((c) => (
                     <button key={c} type="button" onClick={() => setCrop(c)} className={`rounded-full px-3 py-1.5 text-xs font-bold border transition ${crop === c ? "bg-primary text-primary-foreground border-primary" : "bg-white/70 border-white/80 text-foreground/70 hover:bg-white"}`}>
                       {c}
                     </button>

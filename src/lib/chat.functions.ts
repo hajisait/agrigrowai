@@ -4,6 +4,7 @@ import { z } from "zod";
 
 const ALLOWED_CROPS = [
   "Rice", "Wheat", "Tomato", "Cotton", "Onion", "Potato", "Maize", "Sugarcane",
+  "Brinjal", "Chilli", "Banana", "Groundnut", "Soybean", "Mango", "Grapes",
 ] as const;
 
 const schema = z.object({

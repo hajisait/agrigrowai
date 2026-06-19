@@ -47,7 +47,7 @@ export type Scheme = {
   url: string;
 };
 
-export const ALLOWED_CROPS = ["Rice", "Wheat", "Tomato", "Cotton", "Onion", "Potato", "Maize", "Sugarcane"] as const;
+export const ALLOWED_CROPS = ["Rice", "Wheat", "Tomato", "Cotton", "Onion", "Potato", "Maize", "Sugarcane", "Brinjal", "Chilli", "Banana", "Groundnut", "Soybean", "Mango", "Grapes"] as const;
 
 export const FALLBACK_PLACES: GeoResult[] = [
   { name: "New Delhi", admin1: "Delhi", country: "India", latitude: 28.6139, longitude: 77.209 },
