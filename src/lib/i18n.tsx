@@ -171,7 +171,7 @@ const STRINGS: Record<Lang, Dict> = {
     "weather.locating": "സ്ഥാനം കണ്ടെത്തുന്നു…",
     "weather.setlocation": "കാലാവസ്ഥ പേജിൽ സ്ഥാനം സജ്ജമാക്കുക",
     "page.assistant.title": "AgriAI-യോട് എന്തും ചോദിക്കുക",
-    "page.assistant.subtitle": "ബാക്കെൻഡിൽ പ്രവർത്തിക്കുന്ന AI കർഷക ഉപദേശം · നിങ്ങളുടെ ഭാഷയിൽ മറുപടി",
+    "page.assistant.subtitle": "സ്മാർട്ട് AI കാർഷിക ഉപദേശം · നിങ്ങളുടെ ഭാഷയിൽ മറുപടി",
     "page.weather.title": "തത്സമയ കാലാവസ്ഥയും ക്ലൈമറ്റും",
     "page.weather.subtitle": "ഗ്രാമമോ നഗരമോ തിരഞ്ഞ് ഡാഷ്ബോർഡുമായി സിങ്ക് ചെയ്യുക",
     "page.disease.title": "വിള രോഗനിർണ്ണയം",
