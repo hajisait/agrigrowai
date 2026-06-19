@@ -91,7 +91,7 @@ export function WeatherPage() {
       setLoading(false);
     }
   }
-  void geocodePlace;
+  
 
   function useMyLocation() {
     if (!navigator.geolocation) {
