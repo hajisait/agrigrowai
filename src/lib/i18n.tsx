@@ -31,7 +31,7 @@ const STRINGS: Record<Lang, Dict> = {
     "weather.locating": "Detecting your location…",
     "weather.setlocation": "Set a location on the Weather page",
     "page.assistant.title": "Ask AgriAI Anything",
-    "page.assistant.subtitle": "AI farming advice powered by the backend · replies in your language",
+    "page.assistant.subtitle": "Smart AI farming advice · replies in your language",
     "page.weather.title": "Live Climate & Weather",
     "page.weather.subtitle": "Search any village or city and sync it to the dashboard",
     "page.disease.title": "Crop Disease Detection",
