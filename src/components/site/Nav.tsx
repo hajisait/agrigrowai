@@ -16,7 +16,7 @@ export function Nav() {
         <span className="font-extrabold tracking-tight text-base md:text-xl text-primary">AgriAI</span>
       </Link>
 
-      <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-foreground/80">
+      <div className="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-medium text-foreground/80">
         <Link to="/assistant" className="hover:text-primary transition-colors" activeProps={{ className: "text-primary" }}>{t("nav.assistant")}</Link>
         <Link to="/weather" className="hover:text-primary transition-colors" activeProps={{ className: "text-primary" }}>{t("nav.weather")}</Link>
         <Link to="/disease" className="hover:text-primary transition-colors" activeProps={{ className: "text-primary" }}>{t("nav.disease")}</Link>
