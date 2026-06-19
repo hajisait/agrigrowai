@@ -66,24 +66,32 @@ export function WeatherPage() {
     if (!query.trim()) return;
     setLoading(true);
     setError(null);
+    setSuggestions([]);
     try {
-      const geo = await geocodePlace({ query });
-      const first = geo.place;
-      if (!first) {
-        setError("Location not found. Try another village or city.");
+      const geo = await geocodePlaces({ query });
+      const places = geo.places ?? [];
+      if (places.length === 0) {
+        setError("Location not found. Try the nearest district, taluka or city.");
         setLoading(false);
         return;
       }
+      const first = places[0];
       await loadWeather({
         name: first.name, country: first.country, admin1: first.admin1,
         latitude: first.latitude, longitude: first.longitude,
       });
+      if (places.length > 1) {
+        setSuggestions(places.slice(1, 6).map((p) => ({
+          name: p.name, country: p.country, admin1: p.admin1, latitude: p.latitude, longitude: p.longitude,
+        })));
+      }
     } catch {
       setError("Network error. Please retry.");
     } finally {
       setLoading(false);
     }
   }
+  void geocodePlace;
 
   function useMyLocation() {
     if (!navigator.geolocation) {
