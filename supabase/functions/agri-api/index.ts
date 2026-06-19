@@ -211,6 +211,9 @@ Deno.serve(async (req) => {
     }
 
     if (action === "ask") {
+      if (!checkAskRateLimit(clientIp(req))) {
+        return json({ reply: "Too many requests. Please wait a moment and try again.", error: "rate_limited" }, 429);
+      }
       const lovableKey = Deno.env.get("LOVABLE_API_KEY");
       const geminiKey = Deno.env.get("GEMINI_API_KEY");
       if (!lovableKey && !geminiKey) return json({ reply: "AI is not configured. Please contact the administrator.", error: "missing_key" });
