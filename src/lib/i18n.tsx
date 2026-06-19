@@ -177,7 +177,7 @@ const STRINGS: Record<Lang, Dict> = {
     "page.disease.title": "വിള രോഗനിർണ്ണയം",
     "page.disease.subtitle": "AI നിർണ്ണയത്തിനും ചികിത്സാ ഉപദേശത്തിനും വ്യക്തമായ വിള ഫോട്ടോ അപ്‌ലോഡ് ചെയ്യുക.",
     "page.market.title": "മാർക്കറ്റ് വിലകൾ",
-    "page.market.subtitle": "ഇന്ത്യയിലുടനീളമുള്ള ബാക്കെൻഡ് പ്രവർത്തിക്കുന്ന മണ്ടി ട്രെൻഡുകൾ",
+    "page.market.subtitle": "ഇന്ത്യയിലുടനീളമുള്ള തത്സമയ മണ്ടി വില പ്രവണതകൾ",
     "page.schemes.title": "സർക്കാർ പദ്ധതികൾ",
     "page.schemes.subtitle": "സബ്സിഡി, ഇൻഷുറൻസ്, കർഷക പിന്തുണ പദ്ധതികൾ തിരയുക.",
   },
