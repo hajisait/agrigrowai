@@ -37,6 +37,15 @@ export async function geocodePlace(data: { query: string }) {
   }
 }
 
+export async function geocodePlaces(data: { query: string }) {
+  try {
+    return await requestApi<{ places: GeoResult[] }>("geocodeMany", data);
+  } catch {
+    const place = fallbackPlace(data.query);
+    return { places: place ? [place] : [] };
+  }
+}
+
 export async function reverseGeocode(data: { latitude: number; longitude: number }) {
   try {
     return await requestApi<{ place: GeoResult }>("reverseGeocode", data);
