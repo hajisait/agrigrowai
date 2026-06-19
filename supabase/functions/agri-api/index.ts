@@ -200,12 +200,21 @@ Deno.serve(async (req) => {
   const action = String(body.action ?? "");
 
   try {
-    if (action === "geocode") {
+    if (action === "geocode" || action === "geocodeMany") {
       const query = String(body.query ?? "").trim().slice(0, 80);
-      if (!query) return json({ place: null });
-      const r = await fetchWithTimeout(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`);
-      if (r.ok) return json({ place: ((await r.json()) as { results?: GeoResult[] }).results?.[0] ?? fallbackPlace(query) });
-      return json({ place: fallbackPlace(query) });
+      if (!query) return action === "geocodeMany" ? json({ places: [] }) : json({ place: null });
+      const count = action === "geocodeMany" ? 8 : 1;
+      // Bias to India first; fall back to global search if no Indian hit
+      const inUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=${count}&language=en&format=json&countryCode=IN`;
+      let results: GeoResult[] = [];
+      const r1 = await fetchWithTimeout(inUrl);
+      if (r1.ok) results = ((await r1.json()) as { results?: GeoResult[] }).results ?? [];
+      if (results.length === 0) {
+        const r2 = await fetchWithTimeout(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=${count}&language=en&format=json`);
+        if (r2.ok) results = ((await r2.json()) as { results?: GeoResult[] }).results ?? [];
+      }
+      if (action === "geocodeMany") return json({ places: results });
+      return json({ place: results[0] ?? fallbackPlace(query) });
     }
 
     if (action === "reverseGeocode") {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Search, CloudSun, Droplets, Wind, Thermometer, MapPin, LocateFixed } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { geocodePlace, getWeather, reverseGeocode, type WeatherData } from "@/lib/api-client";
+import { geocodePlaces, getWeather, reverseGeocode, type WeatherData } from "@/lib/api-client";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/weather")({
@@ -36,6 +36,7 @@ export function WeatherPage() {
   const [daily, setDaily] = useState<WeatherData["daily"] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<Place[]>([]);
 
   async function loadWeather(p: Place) {
     setPlace(p);
@@ -65,24 +66,32 @@ export function WeatherPage() {
     if (!query.trim()) return;
     setLoading(true);
     setError(null);
+    setSuggestions([]);
     try {
-      const geo = await geocodePlace({ query });
-      const first = geo.place;
-      if (!first) {
-        setError("Location not found. Try another village or city.");
+      const geo = await geocodePlaces({ query });
+      const places = geo.places ?? [];
+      if (places.length === 0) {
+        setError("Location not found. Try the nearest district, taluka or city.");
         setLoading(false);
         return;
       }
+      const first = places[0];
       await loadWeather({
         name: first.name, country: first.country, admin1: first.admin1,
         latitude: first.latitude, longitude: first.longitude,
       });
+      if (places.length > 1) {
+        setSuggestions(places.slice(1, 6).map((p) => ({
+          name: p.name, country: p.country, admin1: p.admin1, latitude: p.latitude, longitude: p.longitude,
+        })));
+      }
     } catch {
       setError("Network error. Please retry.");
     } finally {
       setLoading(false);
     }
   }
+  
 
   function useMyLocation() {
     if (!navigator.geolocation) {
@@ -131,7 +140,7 @@ export function WeatherPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. Coimbatore, Punjab, Bali…"
+              placeholder="Village, district, city or PIN (e.g. Nashik, Coimbatore)…"
               className="w-full bg-white/70 border border-white/80 rounded-full pl-11 pr-5 py-3 text-sm outline-none focus:border-primary/50 focus:bg-white"
             />
           </div>
@@ -155,6 +164,22 @@ export function WeatherPage() {
 
         {error ? (
           <p className="text-center text-sm text-destructive mb-6">{error}</p>
+        ) : null}
+
+        {suggestions.length > 0 ? (
+          <div className="max-w-3xl mx-auto mb-6 flex flex-wrap gap-2 justify-center">
+            <span className="text-xs text-foreground/50 self-center mr-1">Other matches:</span>
+            {suggestions.map((s) => (
+              <button
+                key={`${s.latitude},${s.longitude}`}
+                type="button"
+                onClick={() => { void loadWeather(s); setSuggestions([]); }}
+                className="rounded-full bg-white/70 hover:bg-white border border-white/80 px-3 py-1.5 text-xs font-semibold"
+              >
+                {s.name}{s.admin1 ? `, ${s.admin1}` : ""}
+              </button>
+            ))}
+          </div>
         ) : null}
 
         {place && current ? (

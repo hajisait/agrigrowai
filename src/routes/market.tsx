@@ -138,12 +138,12 @@ export function MarketPage() {
                     />
                   </svg>
                   <a
-                    href={`https://agmarknet.gov.in/SearchCmmMkt.aspx?Tx_Commodity=0&Tx_State=0&Tx_District=0&Tx_Market=0&DateFrom=&DateTo=&Fr_Date=&To_Date=&Tx_Trend=0&Tx_CommodityHead=${encodeURIComponent(c.name)}&Tx_StateHead=--Select--&Tx_DistrictHead=--Select--&Tx_MarketHead=--Select--`}
+                    href={`https://www.commodityonline.com/mandiprices/${c.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}${c.state && c.state !== "All" ? `/${c.state.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : ""}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto inline-flex items-center justify-center gap-1.5 text-xs font-bold text-primary bg-primary/10 hover:bg-primary/15 rounded-full py-2.5 transition"
                   >
-                    View on Agmarknet <ExternalLink className="size-3" />
+                    Live mandi prices <ExternalLink className="size-3" />
                   </a>
                 </div>
               );
@@ -152,8 +152,9 @@ export function MarketPage() {
         )}
 
         <p className="text-center text-[11px] text-foreground/40 mt-8">
-          Indicative prices derived from recent mandi trends. For binding rates, consult{" "}
-          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://agmarknet.gov.in/">Agmarknet</a>.
+          Indicative trends compiled from recent mandi activity. For binding rates check{" "}
+          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://www.commodityonline.com/mandiprices/">Commodity Online</a>{" "}or{" "}
+          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://enam.gov.in/web/dashboard/live_price">eNAM</a>.
         </p>
       </main>
       <Footer />
