@@ -37,7 +37,7 @@ const STRINGS: Record<Lang, Dict> = {
     "page.disease.title": "Crop Disease Detection",
     "page.disease.subtitle": "Upload a clear crop photo for AI diagnosis and treatment advice.",
     "page.market.title": "Market Prices",
-    "page.market.subtitle": "Backend-powered mandi trends across India",
+    "page.market.subtitle": "Live mandi trends from across India",
     "page.schemes.title": "Government Schemes",
     "page.schemes.subtitle": "Search subsidies, insurance and farmer support programs.",
   },
