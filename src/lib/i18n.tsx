@@ -107,7 +107,7 @@ const STRINGS: Record<Lang, Dict> = {
     "page.disease.title": "பயிர் நோய் கண்டறிதல்",
     "page.disease.subtitle": "AI நோயறிதல் மற்றும் சிகிச்சை ஆலோசனைக்கு தெளிவான பயிர் புகைப்படத்தை பதிவேற்றவும்.",
     "page.market.title": "சந்தை விலைகள்",
-    "page.market.subtitle": "இந்தியா முழுவதும் பின்தளத்தில் இயங்கும் மண்டி போக்குகள்",
+    "page.market.subtitle": "இந்தியா முழுவதிலும் நேரடி மண்டி விலை போக்குகள்",
     "page.schemes.title": "அரசுத் திட்டங்கள்",
     "page.schemes.subtitle": "மானியம், காப்பீடு மற்றும் விவசாயி ஆதரவு திட்டங்களை தேடுங்கள்.",
   },
