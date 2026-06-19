@@ -142,7 +142,7 @@ const STRINGS: Record<Lang, Dict> = {
     "page.disease.title": "పంట వ్యాధి గుర్తింపు",
     "page.disease.subtitle": "AI నిర్ధారణ మరియు చికిత్స సలహా కోసం స్పష్టమైన పంట ఫోటోను అప్‌లోడ్ చేయండి.",
     "page.market.title": "మార్కెట్ ధరలు",
-    "page.market.subtitle": "భారతదేశంలోని బ్యాక్‌ఎండ్ ఆధారిత మండీ ట్రెండ్లు",
+    "page.market.subtitle": "భారతదేశం అంతటా లైవ్ మండీ ధరల ట్రెండ్లు",
     "page.schemes.title": "ప్రభుత్వ పథకాలు",
     "page.schemes.subtitle": "సబ్సిడీలు, బీమా మరియు రైతు సహాయ పథకాలను శోధించండి.",
   },
