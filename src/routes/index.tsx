@@ -211,7 +211,7 @@ function DashboardMarket() {
       <div className="flex flex-wrap justify-between items-end gap-3 mb-6">
         <div>
           <h3 className="text-2xl font-bold tracking-tight">Live Market Prices</h3>
-          <p className="text-sm text-foreground/60">Backend mandi feed · updated {updatedAt}</p>
+          <p className="text-sm text-foreground/60">Live mandi feed · updated {updatedAt}</p>
         </div>
         <div className="flex gap-2">
           <button
