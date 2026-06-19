@@ -136,7 +136,7 @@ const STRINGS: Record<Lang, Dict> = {
     "weather.locating": "మీ స్థానాన్ని గుర్తిస్తోంది…",
     "weather.setlocation": "వాతావరణ పేజీలో స్థానం ఎంచుకోండి",
     "page.assistant.title": "AgriAI ని ఏదైనా అడగండి",
-    "page.assistant.subtitle": "బ్యాక్‌ఎండ్ ఆధారిత AI వ్యవసాయ సలహా · మీ భాషలో జవాబులు",
+    "page.assistant.subtitle": "స్మార్ట్ AI వ్యవసాయ సలహా · మీ భాషలో జవాబులు",
     "page.weather.title": "లైవ్ వాతావరణం & క్లైమేట్",
     "page.weather.subtitle": "గ్రామం లేదా నగరాన్ని శోధించి డాష్‌బోర్డ్‌తో సింక్ చేయండి",
     "page.disease.title": "పంట వ్యాధి గుర్తింపు",
