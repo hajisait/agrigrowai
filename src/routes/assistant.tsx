@@ -21,18 +21,22 @@ export const Route = createFileRoute("/assistant")({
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "Best fertilizer for rice in monsoon?",
-  "Why are my tomato leaves yellow?",
-  "Will it rain in Coimbatore tomorrow?",
-  "How much water does cotton need?",
-  "How to control aphids on chilli plants naturally?",
-  "Which crop is most profitable in Maharashtra this season?",
-  "Soil preparation tips for wheat sowing",
-  "What government scheme helps small farmers buy a tractor?",
-  "Signs of nitrogen deficiency in maize?",
-  "Best drip irrigation schedule for tomatoes",
-  "How to store onions to prevent rotting?",
-  "Organic pesticide recipe for brinjal",
+  "Best paddy variety for clayey soil in Thanjavur delta?",
+  "Fertilizer schedule for wheat in Punjab alluvial soil",
+  "Why are my tomato leaves curling in Nashik?",
+  "Rainfall forecast for Vidarbha cotton sowing",
+  "Suitable rabi crops for sandy loam in Rajasthan",
+  "How to apply for PM-KISAN in Bihar?",
+  "Organic aphid control for chilli in Guntur",
+  "Best drip schedule for sugarcane in western UP",
+  "Soil pH correction for tea in Assam",
+  "Most profitable kharif crop in Marathwada this year",
+  "Rythu Bandhu eligibility in Telangana",
+  "Black gram cultivation in red soil of Karnataka",
+  "Coconut farming tips for coastal Kerala",
+  "Apple orchard pest control in Himachal",
+  "Saffron farming in Kashmir — climate needs",
+  "Government subsidy on solar pumps in MP",
 ];
 
 export function AssistantPage() {
