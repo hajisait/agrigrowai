@@ -152,8 +152,9 @@ export function MarketPage() {
         )}
 
         <p className="text-center text-[11px] text-foreground/40 mt-8">
-          Indicative prices derived from recent mandi trends. For binding rates, consult{" "}
-          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://agmarknet.gov.in/">Agmarknet</a>.
+          Indicative trends compiled from recent mandi activity. For binding rates check{" "}
+          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://www.commodityonline.com/mandiprices/">Commodity Online</a>{" "}or{" "}
+          <a className="underline hover:text-primary" target="_blank" rel="noopener noreferrer" href="https://enam.gov.in/web/dashboard/live_price">eNAM</a>.
         </p>
       </main>
       <Footer />
