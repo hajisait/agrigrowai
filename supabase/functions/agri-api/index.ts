@@ -188,8 +188,9 @@ Deno.serve(async (req) => {
     }
 
     if (action === "ask") {
-      const apiKey = Deno.env.get("LOVABLE_API_KEY");
-      if (!apiKey) return json({ reply: "AI is not configured. Please contact the administrator.", error: "missing_key" });
+      const lovableKey = Deno.env.get("LOVABLE_API_KEY");
+      const geminiKey = Deno.env.get("GEMINI_API_KEY");
+      if (!lovableKey && !geminiKey) return json({ reply: "AI is not configured. Please contact the administrator.", error: "missing_key" });
 
       const messages = Array.isArray(body.messages) ? safeMessages(body.messages) : [];
       const last = messages[messages.length - 1] ?? { role: "user", content: "" };
@@ -197,31 +198,94 @@ Deno.serve(async (req) => {
       const imageDataUrl = typeof body.imageDataUrl === "string" && /^data:image\/(png|jpeg|jpg|webp);base64,/.test(body.imageDataUrl)
         ? body.imageDataUrl.slice(0, MAX_IMAGE_DATA_URL_CHARS)
         : undefined;
-      const lastMessage = imageDataUrl
-        ? { role: "user", content: [{ type: "text", text: safeText }, { type: "image_url", image_url: { url: imageDataUrl } }] }
-        : { role: "user", content: safeText };
 
-      const ai = await fetchJsonWithTimeout(AI_GATEWAY_URL, {
-        method: "POST",
-        headers: { "Lovable-API-Key": apiKey, "X-Lovable-AIG-SDK": "edge-function", "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "google/gemini-3-flash-preview",
-          messages: [
-            { role: "system", content: `You are AgriAI Assist, a friendly expert advisor for farmers in India. Answer concisely with practical, safe guidance on crops, soil, fertilizer, irrigation, pests, weather, market prices, and government schemes. For disease photos, say when confidence is low and recommend local expert confirmation before chemicals. Reply in ${languageName(body.language)}.` },
-            ...messages.slice(0, -1),
-            lastMessage,
-          ],
-        }),
-      }, AI_TIMEOUT_MS);
-      if (ai.status === 429) return json({ reply: "Too many requests. Please try again in a moment.", error: "rate_limited" });
-      if (ai.status === 402) return json({ reply: "AI usage quota exhausted. Please add credits to your workspace.", error: "payment_required" });
-      if (!ai.ok) {
-        const detail = await ai.text().catch(() => "");
-        console.error("AI gateway error", ai.status, detail.slice(0, 500));
-        return json({ reply: "Sorry, the assistant is temporarily unavailable. Please try again shortly.", error: "gateway_error" }, 200);
+      const systemPrompt = `You are AgriAI Assist, an expert advisor for Indian farmers with deep knowledge of every Indian state, district, agro-climatic zone, soil type (alluvial, black/regur, red, laterite, desert, mountain, peaty), monsoon patterns (SW & NE), kharif/rabi/zaid seasons, irrigation systems, IPM, organic practices, post-harvest, mandi prices, MSP, and all major central + state government schemes (PM-KISAN, PMFBY, KCC, PMKSY, PKVY, Soil Health Card, e-NAM, state-level schemes like Rythu Bandhu, KALIA, Krushak Assistance, Mukhyamantri Krishi Ashirwad, etc.).
+
+Always:
+- Give region-specific, district-aware advice when location is mentioned.
+- Tailor recommendations to local soil, climate, rainfall and water availability.
+- Include concrete numbers: seed rate (kg/acre), fertilizer dose (NPK kg/acre), spacing, irrigation interval, expected yield, current approximate price range.
+- Mention cultivar/variety names suited to the region (e.g., PB-1121 basmati in Punjab/Haryana, MTU-1010 paddy in AP/Telangana, JS-335 soybean in MP).
+- For pests/diseases: name pathogen, symptoms, organic option first, then chemical with dose & PHI; note when to consult KVK/Krishi Vigyan Kendra.
+- For schemes: state eligibility, benefit amount, how to apply, official portal URL.
+- Use bullet points and short paragraphs. Be practical, never refuse a farming question.
+- For disease photos, give the most likely diagnosis with confidence level; if low, recommend KVK confirmation before chemicals.
+
+Reply in ${languageName(body.language)}.`;
+
+      const chatMessages = [
+        { role: "system", content: systemPrompt },
+        ...messages.slice(0, -1),
+        imageDataUrl
+          ? { role: "user", content: [{ type: "text", text: safeText }, { type: "image_url", image_url: { url: imageDataUrl } }] }
+          : { role: "user", content: safeText },
+      ];
+
+      // Try Lovable AI Gateway first
+      if (lovableKey) {
+        try {
+          const ai = await fetchJsonWithTimeout(AI_GATEWAY_URL, {
+            method: "POST",
+            headers: { "Lovable-API-Key": lovableKey, "X-Lovable-AIG-SDK": "edge-function", "Content-Type": "application/json" },
+            body: JSON.stringify({ model: "google/gemini-3-flash-preview", messages: chatMessages }),
+          }, AI_TIMEOUT_MS);
+          if (ai.ok) {
+            const data = await ai.json();
+            const reply = data.choices?.[0]?.message?.content?.trim();
+            if (reply) return json({ reply, error: null });
+          } else if (ai.status === 429 && !geminiKey) {
+            return json({ reply: "Too many requests. Please try again in a moment.", error: "rate_limited" });
+          } else {
+            const detail = await ai.text().catch(() => "");
+            console.error("Lovable AI failed", ai.status, detail.slice(0, 300), "— falling back to Gemini");
+          }
+        } catch (e) {
+          console.error("Lovable AI threw, falling back to Gemini:", e);
+        }
       }
-      const data = await ai.json();
-      return json({ reply: data.choices?.[0]?.message?.content?.trim() || "I couldn't generate a response. Please try again.", error: null });
+
+      // Fallback: Google AI Studio Gemini API (free tier, generous quota)
+      if (geminiKey) {
+        try {
+          const geminiContents: unknown[] = [];
+          for (const m of messages.slice(0, -1)) {
+            geminiContents.push({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: String(m.content) }] });
+          }
+          const lastParts: unknown[] = [{ text: safeText }];
+          if (imageDataUrl) {
+            const match = imageDataUrl.match(/^data:(image\/[a-z]+);base64,(.+)$/);
+            if (match) lastParts.push({ inline_data: { mime_type: match[1], data: match[2] } });
+          }
+          geminiContents.push({ role: "user", parts: lastParts });
+
+          const gr = await fetchJsonWithTimeout(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: systemPrompt }] },
+                contents: geminiContents,
+                generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
+              }),
+            },
+            AI_TIMEOUT_MS,
+          );
+          if (!gr.ok) {
+            const detail = await gr.text().catch(() => "");
+            console.error("Gemini fallback error", gr.status, detail.slice(0, 500));
+            return json({ reply: "Sorry, the assistant is temporarily unavailable. Please try again shortly.", error: "gateway_error" });
+          }
+          const gd = await gr.json();
+          const reply = gd?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("").trim();
+          return json({ reply: reply || "I couldn't generate a response. Please try again.", error: null });
+        } catch (e) {
+          console.error("Gemini fallback threw:", e);
+          return json({ reply: "Network error reaching the assistant.", error: "network_error" });
+        }
+      }
+
+      return json({ reply: "AI usage quota exhausted. Please add credits to your workspace.", error: "payment_required" });
     }
 
     return json({ error: "Unknown action" }, 400);
