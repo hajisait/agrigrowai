@@ -110,9 +110,10 @@ function languageName(code?: string) {
   return map[raw.toUpperCase()] ?? "English";
 }
 
-// Simple per-IP rate limiter for the AI `ask` action (in-memory; per-isolate)
-const ASK_RATE_LIMIT = 12; // requests
-const ASK_RATE_WINDOW_MS = 60_000; // per minute
+// Per-IP rate limiter for the AI `ask` action — effectively unlimited for normal use,
+// only blocks runaway bots/abuse.
+const ASK_RATE_LIMIT = 100000; // requests per window per IP
+const ASK_RATE_WINDOW_MS = 60_000;
 const askHits = new Map<string, { count: number; resetAt: number }>();
 function checkAskRateLimit(ip: string) {
   const now = Date.now();
