@@ -272,11 +272,24 @@ Deno.serve(async (req) => {
         ? body.imageDataUrl.slice(0, MAX_IMAGE_DATA_URL_CHARS)
         : undefined;
 
+      const nowIst = new Date(Date.now() + 5.5 * 3600_000);
+      const istDate = nowIst.toISOString().slice(0, 10);
+      const istTime = nowIst.toISOString().slice(11, 16);
+      const monthName = ["January","February","March","April","May","June","July","August","September","October","November","December"][nowIst.getUTCMonth()];
+      const m = nowIst.getUTCMonth() + 1;
+      const season = (m >= 6 && m <= 10) ? "Kharif / SW Monsoon (Jun–Oct)" : (m >= 11 || m <= 3) ? "Rabi (Nov–Mar) — NE monsoon active in TN/coastal AP during Oct–Dec" : "Zaid / pre-monsoon summer (Apr–May)";
+
       const systemPrompt = `You are AgriAI Assist, an expert advisor for Indian farmers with deep knowledge of every Indian state, district, agro-climatic zone, soil type (alluvial, black/regur, red, laterite, desert, mountain, peaty), monsoon patterns (SW & NE), kharif/rabi/zaid seasons, irrigation systems, IPM, organic practices, post-harvest, mandi prices, MSP, and all major central + state government schemes (PM-KISAN, PMFBY, KCC, PMKSY, PKVY, Soil Health Card, e-NAM, state-level schemes like Rythu Bandhu, KALIA, Krushak Assistance, Mukhyamantri Krishi Ashirwad, etc.).
+
+REAL-TIME CONTEXT (use this — do NOT say you don't know the date):
+- Today's date (IST): ${istDate} (${monthName} ${nowIst.getUTCDate()}, ${nowIst.getUTCFullYear()})
+- Current time (IST): ${istTime}
+- Current cropping season in India: ${season}
+- Use this to ground sowing windows, irrigation schedules, pest pressure, weather expectations, and scheme deadlines.
 
 Always:
 - Give region-specific, district-aware advice when location is mentioned.
-- Tailor recommendations to local soil, climate, rainfall and water availability.
+- Tailor recommendations to local soil, climate, rainfall and water availability for the CURRENT month/season above.
 - Include concrete numbers: seed rate (kg/acre), fertilizer dose (NPK kg/acre), spacing, irrigation interval, expected yield, current approximate price range.
 - Mention cultivar/variety names suited to the region (e.g., PB-1121 basmati in Punjab/Haryana, MTU-1010 paddy in AP/Telangana, JS-335 soybean in MP).
 - For pests/diseases: name pathogen, symptoms, organic option first, then chemical with dose & PHI; note when to consult KVK/Krishi Vigyan Kendra.
