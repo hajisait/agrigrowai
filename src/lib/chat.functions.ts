@@ -53,7 +53,8 @@ function sanitizeUserText(input: string): string {
 }
 
 // Simple in-memory per-IP rate limiter (best-effort within a worker instance).
-const RATE_LIMIT = { windowMs: 60_000, max: 10 };
+// Effectively unlimited per IP — keeps a guard against runaway bots only.
+const RATE_LIMIT = { windowMs: 60_000, max: 100000 };
 const hits = new Map<string, { count: number; reset: number }>();
 function rateLimit(ip: string): boolean {
   const now = Date.now();
