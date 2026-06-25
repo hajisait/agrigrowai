@@ -3,6 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { WeatherWidget } from "@/components/site/WeatherWidget";
+import { CreditsWidget } from "@/components/site/CreditsWidget";
 import { useI18n } from "@/lib/i18n";
 import { getMarketPrices, getSchemes, type MarketCrop, type Scheme } from "@/lib/api-client";
 import { CloudSun, Mic, Sparkles, Camera, Wheat, TrendingDown, TrendingUp, ExternalLink, RefreshCw } from "lucide-react";
@@ -143,6 +144,9 @@ export function Landing() {
 
             {/* Weather widget — live, syncs with /weather */}
             <WeatherWidget />
+
+            {/* AI Credits widget */}
+            <CreditsWidget />
 
             {/* Disease */}
             <Link to="/disease" className="md:col-span-4 glass-panel p-5 rounded-[2rem] hover:bg-white/65 transition-all group">
