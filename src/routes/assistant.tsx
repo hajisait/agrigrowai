@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Mic, Send, Sparkles } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { askAgriAI } from "@/lib/api-client";
+import { askAgriAI, trackSessionQuery } from "@/lib/api-client";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/assistant")({
@@ -64,6 +64,7 @@ export function AssistantPage() {
     try {
       const res = await askAgriAI({ messages: next.map((m) => ({ role: m.role, content: m.content })), language: lang });
       setMessages([...next, { role: "assistant", content: res.reply }]);
+      trackSessionQuery();
     } catch {
       setMessages([...next, { role: "assistant", content: "Sorry, something went wrong. Please try again." }]);
     } finally {
