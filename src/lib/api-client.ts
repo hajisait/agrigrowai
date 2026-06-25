@@ -78,4 +78,43 @@ export async function getSchemes(data: { query?: string; category?: string }) {
   }
 }
 
+export async function getCredits() {
+  return requestApi<{
+    remainingCredits: number;
+    dailyRemaining: number;
+    totalGranted: number;
+    usedThisPeriod: number;
+    costPerQuery: number;
+    estimatedQueries: number;
+    source: string;
+    lastUpdated: string;
+  }>("credits", {});
+}
+
+export function trackSessionQuery() {
+  try {
+    const key = "agriai_session_queries";
+    const n = Number(localStorage.getItem(key) ?? 0);
+    localStorage.setItem(key, String(n + 1));
+  } catch {
+    // ignore storage errors
+  }
+}
+
+export function getSessionQueryCount() {
+  try {
+    return Number(localStorage.getItem("agriai_session_queries") ?? 0);
+  } catch {
+    return 0;
+  }
+}
+
+export function resetSessionQueryCount() {
+  try {
+    localStorage.removeItem("agriai_session_queries");
+  } catch {
+    // ignore
+  }
+}
+
 export type { MarketCrop, Scheme, WeatherData };
