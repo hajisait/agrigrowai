@@ -25,6 +25,7 @@ export function Nav() {
     { to: "/weather", label: t("nav.weather") },
     { to: "/disease", label: t("nav.disease") },
     { to: "/market", label: t("nav.market") },
+    { to: "/calculator", label: t("nav.calculator") },
     { to: "/schemes", label: t("nav.schemes") },
   ] as const;
 
