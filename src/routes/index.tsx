@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { WeatherWidget } from "@/components/site/WeatherWidget";
 import { useI18n } from "@/lib/i18n";
 import { getMarketPrices, getSchemes, type MarketCrop, type Scheme } from "@/lib/api-client";
-import { CloudSun, Mic, Sparkles, Camera, Wheat, TrendingDown, TrendingUp, ExternalLink, RefreshCw } from "lucide-react";
+import { CloudSun, Mic, Sparkles, Camera, Wheat, TrendingDown, TrendingUp, ExternalLink, RefreshCw, Calculator } from "lucide-react";
 import heroField from "@/assets/hero-field.jpg";
 import cropLeaf from "@/assets/crop-leaf.jpg";
 
@@ -152,6 +152,15 @@ export function Landing() {
               </div>
               <h3 className="text-xl font-bold mb-1">Disease Detection</h3>
               <p className="text-sm text-foreground/60">Upload crop leaf photos for instant analysis and treatment plans.</p>
+            </Link>
+
+            {/* Profit calculator */}
+            <Link to="/calculator" className="md:col-span-4 glass-panel p-5 rounded-[2rem] hover:bg-white/65 transition-all group">
+              <div className="size-12 rounded-2xl bg-[color:var(--amber-brand)]/15 text-[color:var(--amber-brand)] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Calculator className="size-6" />
+              </div>
+              <h3 className="text-xl font-bold mb-1">Profit Calculator</h3>
+              <p className="text-sm text-foreground/60">Estimate revenue, costs and net income before you sow.</p>
             </Link>
 
             <DashboardMarket />

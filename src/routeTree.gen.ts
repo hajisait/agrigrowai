@@ -13,6 +13,7 @@ import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as SchemesRouteImport } from './routes/schemes'
 import { Route as MarketRouteImport } from './routes/market'
 import { Route as DiseaseRouteImport } from './routes/disease'
+import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -36,6 +37,11 @@ const DiseaseRoute = DiseaseRouteImport.update({
   path: '/disease',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorRoute = CalculatorRouteImport.update({
+  id: '/calculator',
+  path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AssistantRoute = AssistantRouteImport.update({
   id: '/assistant',
   path: '/assistant',
@@ -50,6 +56,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/calculator': typeof CalculatorRoute
   '/disease': typeof DiseaseRoute
   '/market': typeof MarketRoute
   '/schemes': typeof SchemesRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/calculator': typeof CalculatorRoute
   '/disease': typeof DiseaseRoute
   '/market': typeof MarketRoute
   '/schemes': typeof SchemesRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
+  '/calculator': typeof CalculatorRoute
   '/disease': typeof DiseaseRoute
   '/market': typeof MarketRoute
   '/schemes': typeof SchemesRoute
@@ -77,16 +86,25 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/assistant'
+    | '/calculator'
     | '/disease'
     | '/market'
     | '/schemes'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/disease' | '/market' | '/schemes' | '/weather'
+  to:
+    | '/'
+    | '/assistant'
+    | '/calculator'
+    | '/disease'
+    | '/market'
+    | '/schemes'
+    | '/weather'
   id:
     | '__root__'
     | '/'
     | '/assistant'
+    | '/calculator'
     | '/disease'
     | '/market'
     | '/schemes'
@@ -96,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
+  CalculatorRoute: typeof CalculatorRoute
   DiseaseRoute: typeof DiseaseRoute
   MarketRoute: typeof MarketRoute
   SchemesRoute: typeof SchemesRoute
@@ -132,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiseaseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculator': {
+      id: '/calculator'
+      path: '/calculator'
+      fullPath: '/calculator'
+      preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/assistant': {
       id: '/assistant'
       path: '/assistant'
@@ -152,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
+  CalculatorRoute: CalculatorRoute,
   DiseaseRoute: DiseaseRoute,
   MarketRoute: MarketRoute,
   SchemesRoute: SchemesRoute,
