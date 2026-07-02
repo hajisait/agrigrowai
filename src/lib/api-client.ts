@@ -70,9 +70,9 @@ export async function getMarketPrices(data: { query?: string; state?: string; so
   }
 }
 
-export async function getSchemes(data: { query?: string; category?: string }) {
+export async function getSchemes(data: { query?: string; category?: string; state?: string }) {
   try {
-    return await requestApi<{ schemes: Scheme[]; categories: string[] }>("schemes", data);
+    return await requestApi<{ schemes: Scheme[]; categories: string[]; states: string[] }>("schemes", data);
   } catch {
     return getSchemeSnapshot(data);
   }

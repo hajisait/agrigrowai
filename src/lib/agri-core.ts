@@ -263,12 +263,19 @@ export function getMarketSnapshot(input: { query?: string; state?: string; sort?
   return { crops, states, updatedAt: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) };
 }
 
-export function getSchemeSnapshot(input: { query?: string; category?: string }) {
+export function getSchemeSnapshot(input: { query?: string; category?: string; state?: string }) {
   const category = input.category ?? "All";
+  const stateFilter = input.state ?? "All";
   const categories = ["All", ...Array.from(new Set(SCHEMES.map((s) => s.tag)))];
+  const states = ["All", "Central", ...Array.from(new Set(SCHEMES.map((s) => s.state).filter(Boolean) as string[])).sort()];
   const q = (input.query ?? "").trim().toLowerCase();
-  const schemes = SCHEMES.filter((s) => (!q || s.title.toLowerCase().includes(q) || s.body.toLowerCase().includes(q) || s.tag.toLowerCase().includes(q)) && (category === "All" || s.tag === category));
-  return { schemes, categories };
+  const schemes = SCHEMES.filter((s) => {
+    const matchesQ = !q || s.title.toLowerCase().includes(q) || s.body.toLowerCase().includes(q) || s.tag.toLowerCase().includes(q) || (s.state ?? "").toLowerCase().includes(q);
+    const matchesCat = category === "All" || s.tag === category;
+    const matchesState = stateFilter === "All" || (stateFilter === "Central" ? !s.state : s.state === stateFilter);
+    return matchesQ && matchesCat && matchesState;
+  });
+  return { schemes, categories, states };
 }
 
 export function languageName(code?: string): string {

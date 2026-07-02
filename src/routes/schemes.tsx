@@ -29,20 +29,23 @@ export function SchemesPage() {
   const { t } = useI18n();
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState("All");
+  const [stateFilter, setStateFilter] = useState("All");
   const [list, setList] = useState<Scheme[]>([]);
   const [categories, setCategories] = useState(["All"]);
+  const [states, setStates] = useState<string[]>(["All"]);
 
   useEffect(() => {
     let cancelled = false;
-    getSchemes({ query, category: cat }).then((res) => {
+    getSchemes({ query, category: cat, state: stateFilter }).then((res) => {
       if (cancelled) return;
       setList(res.schemes);
       setCategories(res.categories);
+      if (res.states) setStates(res.states);
     });
     return () => {
       cancelled = true;
     };
-  }, [query, cat]);
+  }, [query, cat, stateFilter]);
 
   return (
     <>
@@ -53,15 +56,28 @@ export function SchemesPage() {
           <p className="text-foreground/60 mt-2">{t("page.schemes.subtitle")}</p>
         </div>
 
-        <div className="glass-panel rounded-3xl p-4 md:p-5 mb-6 flex flex-col md:flex-row gap-3">
-          <div className="flex-grow relative">
-            <Search className="size-4 absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40" />
-            <input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search schemes, subsidies, benefits…"
-              className="w-full bg-white/70 border border-white/80 rounded-full pl-11 pr-5 py-2.5 text-sm outline-none focus:border-primary/50 focus:bg-white"
-            />
+        <div className="glass-panel rounded-3xl p-4 md:p-5 mb-6 flex flex-col gap-3">
+          <div className="flex flex-col md:flex-row gap-3">
+            <div className="flex-grow relative">
+              <Search className="size-4 absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search schemes, subsidies, benefits, state…"
+                className="w-full bg-white/70 border border-white/80 rounded-full pl-11 pr-5 py-2.5 text-sm outline-none focus:border-primary/50 focus:bg-white"
+              />
+            </div>
+            <select
+              value={stateFilter}
+              onChange={(e) => setStateFilter(e.target.value)}
+              className="bg-white/70 border border-white/80 rounded-full px-4 py-2.5 text-sm font-semibold outline-none focus:border-primary/50 focus:bg-white"
+            >
+              {states.map((s) => (
+                <option key={s} value={s}>
+                  {s === "All" ? "All States" : s}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="flex gap-2 overflow-x-auto md:flex-wrap">
             {categories.map((c) => (
@@ -80,6 +96,8 @@ export function SchemesPage() {
           </div>
         </div>
 
+        <p className="text-xs text-foreground/50 mb-4">Showing {list.length} scheme{list.length === 1 ? "" : "s"}</p>
+
         {list.length === 0 ? (
           <div className="text-center text-foreground/50 py-16">No schemes match your search.</div>
         ) : (
@@ -88,7 +106,12 @@ export function SchemesPage() {
               const t = TONE[s.tone];
               return (
                 <div key={s.title} className={`glass-panel rounded-[2rem] p-7 border-l-4 ${t.border} flex flex-col`}>
-                  <p className={`text-[10px] font-bold uppercase tracking-widest mb-2 ${t.text}`}>{s.tag}</p>
+                  <div className="flex items-center justify-between mb-2 gap-2">
+                    <p className={`text-[10px] font-bold uppercase tracking-widest ${t.text}`}>{s.tag}</p>
+                    <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-foreground/5 text-foreground/60">
+                      {s.state ?? "Central"}
+                    </span>
+                  </div>
                   <h3 className="text-xl font-bold mb-3">{s.title}</h3>
                   <p className="text-sm text-foreground/60 mb-4">{s.body}</p>
                   <dl className="text-xs space-y-2 mb-6 flex-grow">
