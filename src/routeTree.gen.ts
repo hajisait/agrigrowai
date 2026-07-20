@@ -10,11 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteImport } from './routes/weather'
+import { Route as SoilRouteImport } from './routes/soil'
 import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MarketRouteImport } from './routes/market'
+import { Route as FertilizerRouteImport } from './routes/fertilizer'
 import { Route as DiseaseRouteImport } from './routes/disease'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WeatherRoute = WeatherRouteImport.update({
@@ -22,9 +27,19 @@ const WeatherRoute = WeatherRouteImport.update({
   path: '/weather',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SoilRoute = SoilRouteImport.update({
+  id: '/soil',
+  path: '/soil',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SchemesRoute = SchemesRouteImport.update({
   id: '/schemes',
   path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketRoute = MarketRouteImport.update({
@@ -32,9 +47,19 @@ const MarketRoute = MarketRouteImport.update({
   path: '/market',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FertilizerRoute = FertilizerRouteImport.update({
+  id: '/fertilizer',
+  path: '/fertilizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiseaseRoute = DiseaseRouteImport.update({
   id: '/disease',
   path: '/disease',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorRoute = CalculatorRouteImport.update({
@@ -47,6 +72,11 @@ const AssistantRoute = AssistantRouteImport.update({
   path: '/assistant',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,69 +85,104 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/calculator': typeof CalculatorRoute
+  '/calendar': typeof CalendarRoute
   '/disease': typeof DiseaseRoute
+  '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
+  '/pricing': typeof PricingRoute
   '/schemes': typeof SchemesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/calculator': typeof CalculatorRoute
+  '/calendar': typeof CalendarRoute
   '/disease': typeof DiseaseRoute
+  '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
+  '/pricing': typeof PricingRoute
   '/schemes': typeof SchemesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
   '/assistant': typeof AssistantRoute
   '/calculator': typeof CalculatorRoute
+  '/calendar': typeof CalendarRoute
   '/disease': typeof DiseaseRoute
+  '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
+  '/pricing': typeof PricingRoute
   '/schemes': typeof SchemesRoute
+  '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/alerts'
     | '/assistant'
     | '/calculator'
+    | '/calendar'
     | '/disease'
+    | '/fertilizer'
     | '/market'
+    | '/pricing'
     | '/schemes'
+    | '/soil'
     | '/weather'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/alerts'
     | '/assistant'
     | '/calculator'
+    | '/calendar'
     | '/disease'
+    | '/fertilizer'
     | '/market'
+    | '/pricing'
     | '/schemes'
+    | '/soil'
     | '/weather'
   id:
     | '__root__'
     | '/'
+    | '/alerts'
     | '/assistant'
     | '/calculator'
+    | '/calendar'
     | '/disease'
+    | '/fertilizer'
     | '/market'
+    | '/pricing'
     | '/schemes'
+    | '/soil'
     | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertsRoute: typeof AlertsRoute
   AssistantRoute: typeof AssistantRoute
   CalculatorRoute: typeof CalculatorRoute
+  CalendarRoute: typeof CalendarRoute
   DiseaseRoute: typeof DiseaseRoute
+  FertilizerRoute: typeof FertilizerRoute
   MarketRoute: typeof MarketRoute
+  PricingRoute: typeof PricingRoute
   SchemesRoute: typeof SchemesRoute
+  SoilRoute: typeof SoilRoute
   WeatherRoute: typeof WeatherRoute
 }
 
@@ -130,11 +195,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeatherRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/soil': {
+      id: '/soil'
+      path: '/soil'
+      fullPath: '/soil'
+      preLoaderRoute: typeof SoilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/schemes': {
       id: '/schemes'
       path: '/schemes'
       fullPath: '/schemes'
       preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/market': {
@@ -144,11 +223,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MarketRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fertilizer': {
+      id: '/fertilizer'
+      path: '/fertilizer'
+      fullPath: '/fertilizer'
+      preLoaderRoute: typeof FertilizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/disease': {
       id: '/disease'
       path: '/disease'
       fullPath: '/disease'
       preLoaderRoute: typeof DiseaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculator': {
@@ -165,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssistantRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,11 +277,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertsRoute: AlertsRoute,
   AssistantRoute: AssistantRoute,
   CalculatorRoute: CalculatorRoute,
+  CalendarRoute: CalendarRoute,
   DiseaseRoute: DiseaseRoute,
+  FertilizerRoute: FertilizerRoute,
   MarketRoute: MarketRoute,
+  PricingRoute: PricingRoute,
   SchemesRoute: SchemesRoute,
+  SoilRoute: SoilRoute,
   WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
