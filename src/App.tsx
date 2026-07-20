@@ -7,6 +7,11 @@ import { DiseasePage } from "@/routes/disease";
 import { MarketPage } from "@/routes/market";
 import { SchemesPage } from "@/routes/schemes";
 import { WeatherPage } from "@/routes/weather";
+import { FertilizerPage } from "@/routes/fertilizer";
+import { CalendarPage } from "@/routes/calendar";
+import { SoilPage } from "@/routes/soil";
+import { AlertsPage } from "@/routes/alerts";
+import { PricingPage } from "@/routes/pricing";
 
 function Routes() {
   const { path } = useSpaRouter();
@@ -16,6 +21,11 @@ function Routes() {
   if (path === "/market") return <MarketPage />;
   if (path === "/schemes") return <SchemesPage />;
   if (path === "/weather") return <WeatherPage />;
+  if (path === "/fertilizer") return <FertilizerPage />;
+  if (path === "/calendar") return <CalendarPage />;
+  if (path === "/soil") return <SoilPage />;
+  if (path === "/alerts") return <AlertsPage />;
+  if (path === "/pricing") return <PricingPage />;
   return <Landing />;
 }
 

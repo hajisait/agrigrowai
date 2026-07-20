@@ -24,9 +24,14 @@ export function Nav() {
     { to: "/assistant", label: t("nav.assistant") },
     { to: "/weather", label: t("nav.weather") },
     { to: "/disease", label: t("nav.disease") },
+    { to: "/fertilizer", label: "Fertilizer" },
+    { to: "/calendar", label: "Calendar" },
+    { to: "/soil", label: "Soil" },
     { to: "/market", label: t("nav.market") },
+    { to: "/alerts", label: "Alerts" },
     { to: "/calculator", label: t("nav.calculator") },
     { to: "/schemes", label: t("nav.schemes") },
+    { to: "/pricing", label: "Pro" },
   ] as const;
 
   return (
