@@ -13,18 +13,11 @@ export type ProState = {
   plan: "monthly" | "yearly" | "lifetime" | null;
 };
 
-const DEFAULT: ProState = { active: false, since: null, plan: null };
+// Everything is free — Pro is always active for all users.
+const DEFAULT: ProState = { active: true, since: null, plan: "lifetime" };
 
 export function getProState(): ProState {
-  if (typeof window === "undefined") return DEFAULT;
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return DEFAULT;
-    const parsed = JSON.parse(raw) as ProState;
-    return { ...DEFAULT, ...parsed };
-  } catch {
-    return DEFAULT;
-  }
+  return DEFAULT;
 }
 
 export function activatePro(code: string, plan: ProState["plan"] = "monthly"): boolean {
