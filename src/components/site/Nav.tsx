@@ -31,7 +31,6 @@ export function Nav() {
     { to: "/alerts", label: "Alerts" },
     { to: "/calculator", label: t("nav.calculator") },
     { to: "/schemes", label: t("nav.schemes") },
-    { to: "/pricing", label: "Pro" },
   ] as const;
 
   return (
