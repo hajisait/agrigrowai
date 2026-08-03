@@ -12,6 +12,7 @@ import { CalendarPage } from "@/routes/calendar";
 import { SoilPage } from "@/routes/soil";
 import { AlertsPage } from "@/routes/alerts";
 import { PricingPage } from "@/routes/pricing";
+import { PromoPopup } from "@/components/site/PromoPopup";
 
 function Routes() {
   const { path } = useSpaRouter();
@@ -34,6 +35,7 @@ export function App() {
     <I18nProvider>
       <SpaRouterProvider>
         <Routes />
+        <PromoPopup />
       </SpaRouterProvider>
     </I18nProvider>
   );
