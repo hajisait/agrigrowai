@@ -12,6 +12,7 @@ import { CalendarPage } from "@/routes/calendar";
 import { SoilPage } from "@/routes/soil";
 import { AlertsPage } from "@/routes/alerts";
 import { PricingPage } from "@/routes/pricing";
+import { PromoPopup } from "@/components/site/PromoPopup";
 
 function Routes() {
   const { path } = useSpaRouter();
