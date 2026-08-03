@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Leaf } from "lucide-react";
 
 export function Footer() {
@@ -14,10 +15,10 @@ export function Footer() {
           <p className="text-xs text-foreground/50">Empowering 20 million+ farmers across India.</p>
         </div>
         <div className="flex gap-6 md:gap-8 text-xs font-bold text-foreground/60">
-          <a href="#" className="hover:text-primary">Privacy</a>
-          <a href="#" className="hover:text-primary">Help Desk</a>
-          <a href="#" className="hover:text-primary">WhatsApp</a>
-          <a href="#" className="hover:text-primary">Sitemap</a>
+          <Link to="/privacy" className="hover:text-primary">Privacy</Link>
+          <a href="mailto:support@agrigrowai.app" className="hover:text-primary">Help Desk</a>
+          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">WhatsApp</a>
+          <Link to="/schemes" className="hover:text-primary">Schemes</Link>
         </div>
         <div className="hidden md:flex gap-3 items-center text-[11px] text-foreground/50">
           <span className="uppercase font-bold tracking-widest">Offices:</span>

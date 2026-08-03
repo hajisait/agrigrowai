@@ -12,6 +12,7 @@ import { CalendarPage } from "@/routes/calendar";
 import { SoilPage } from "@/routes/soil";
 import { AlertsPage } from "@/routes/alerts";
 import { PricingPage } from "@/routes/pricing";
+import { PrivacyPage } from "@/routes/privacy";
 import { PromoPopup } from "@/components/site/PromoPopup";
 
 function Routes() {
@@ -27,6 +28,7 @@ function Routes() {
   if (path === "/soil") return <SoilPage />;
   if (path === "/alerts") return <AlertsPage />;
   if (path === "/pricing") return <PricingPage />;
+  if (path === "/privacy") return <PrivacyPage />;
   return <Landing />;
 }
 

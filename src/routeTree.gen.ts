@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeatherRouteImport } from './routes/weather'
 import { Route as SoilRouteImport } from './routes/soil'
 import { Route as SchemesRouteImport } from './routes/schemes'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MarketRouteImport } from './routes/market'
 import { Route as FertilizerRouteImport } from './routes/fertilizer'
@@ -35,6 +36,11 @@ const SoilRoute = SoilRouteImport.update({
 const SchemesRoute = SchemesRouteImport.update({
   id: '/schemes',
   path: '/schemes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/schemes': typeof SchemesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/schemes': typeof SchemesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/fertilizer': typeof FertilizerRoute
   '/market': typeof MarketRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/schemes': typeof SchemesRoute
   '/soil': typeof SoilRoute
   '/weather': typeof WeatherRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/fertilizer'
     | '/market'
     | '/pricing'
+    | '/privacy'
     | '/schemes'
     | '/soil'
     | '/weather'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/fertilizer'
     | '/market'
     | '/pricing'
+    | '/privacy'
     | '/schemes'
     | '/soil'
     | '/weather'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/fertilizer'
     | '/market'
     | '/pricing'
+    | '/privacy'
     | '/schemes'
     | '/soil'
     | '/weather'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   FertilizerRoute: typeof FertilizerRoute
   MarketRoute: typeof MarketRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   SchemesRoute: typeof SchemesRoute
   SoilRoute: typeof SoilRoute
   WeatherRoute: typeof WeatherRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/schemes'
       fullPath: '/schemes'
       preLoaderRoute: typeof SchemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   FertilizerRoute: FertilizerRoute,
   MarketRoute: MarketRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   SchemesRoute: SchemesRoute,
   SoilRoute: SoilRoute,
   WeatherRoute: WeatherRoute,
