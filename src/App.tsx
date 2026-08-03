@@ -35,6 +35,7 @@ export function App() {
     <I18nProvider>
       <SpaRouterProvider>
         <Routes />
+        <PromoPopup />
       </SpaRouterProvider>
     </I18nProvider>
   );
