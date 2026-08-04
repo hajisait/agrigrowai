@@ -3,6 +3,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { AdBanner } from "@/components/site/AdBanner";
+import { Recommendations } from "@/components/site/Recommendations";
+
 import { WeatherWidget } from "@/components/site/WeatherWidget";
 import { useI18n } from "@/lib/i18n";
 import { getMarketPrices, getSchemes, type MarketCrop, type Scheme } from "@/lib/api-client";
@@ -168,7 +170,10 @@ export function Landing() {
           </div>
         </section>
 
+        <Recommendations />
+
         <AdBanner className="mb-4" />
+
 
         <DashboardSchemes />
       </main>

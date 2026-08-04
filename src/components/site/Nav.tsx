@@ -1,13 +1,17 @@
 import { Link } from "@tanstack/react-router";
-import { Leaf, Menu, Moon, Sun, X } from "lucide-react";
+import { BellRing, Leaf, Menu, Moon, Sun, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LANGS, useI18n, type Lang } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
+import { useAuth } from "@/lib/auth";
+
 
 export function Nav() {
   const { lang, setLang, t } = useI18n();
   const { theme, toggle } = useTheme();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     if (!open) return;
@@ -73,6 +77,32 @@ export function Nav() {
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
+          {user ? (
+            <>
+              <Link
+                to="/reminders"
+                aria-label="Reminders"
+                className="hidden sm:grid size-9 rounded-full glass-panel place-items-center text-foreground/80 hover:text-primary transition"
+              >
+                <BellRing className="size-4" />
+              </Link>
+              <Link
+                to="/account"
+                aria-label="My account"
+                className="size-9 rounded-full bg-primary text-primary-foreground grid place-items-center hover:opacity-90 transition"
+              >
+                <User className="size-4" />
+              </Link>
+            </>
+          ) : (
+            <Link
+              to="/auth"
+              className="rounded-full bg-primary text-primary-foreground px-3 sm:px-4 py-2 text-xs font-bold whitespace-nowrap"
+            >
+              {t("nav.signin")}
+            </Link>
+          )}
+
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -107,6 +137,33 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
+          {user ? (
+            <>
+              <Link
+                to="/reminders"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-semibold text-foreground/85 hover:bg-primary/10 hover:text-primary transition"
+              >
+                Reminders
+              </Link>
+              <Link
+                to="/account"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-semibold text-primary"
+              >
+                My profile
+              </Link>
+            </>
+          ) : (
+            <Link
+              to="/auth"
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 rounded-xl text-base font-bold bg-primary text-primary-foreground text-center mt-1"
+            >
+              {t("nav.signin")}
+            </Link>
+          )}
+
           <div className="flex items-center justify-center gap-1 mt-2 pt-3 border-t border-foreground/10">
             {LANGS.map((l) => (
               <button
