@@ -137,6 +137,33 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
+          {user ? (
+            <>
+              <Link
+                to="/reminders"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-semibold text-foreground/85 hover:bg-primary/10 hover:text-primary transition"
+              >
+                Reminders
+              </Link>
+              <Link
+                to="/account"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-semibold text-primary"
+              >
+                My profile
+              </Link>
+            </>
+          ) : (
+            <Link
+              to="/auth"
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 rounded-xl text-base font-bold bg-primary text-primary-foreground text-center mt-1"
+            >
+              {t("nav.signin")}
+            </Link>
+          )}
+
           <div className="flex items-center justify-center gap-1 mt-2 pt-3 border-t border-foreground/10">
             {LANGS.map((l) => (
               <button
