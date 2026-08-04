@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Leaf, Menu, Moon, Sun, X } from "lucide-react";
+import { BellRing, Leaf, Menu, Moon, Sun, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LANGS, useI18n, type Lang } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
+import { useAuth } from "@/lib/auth";
+
 
 export function Nav() {
   const { lang, setLang, t } = useI18n();
