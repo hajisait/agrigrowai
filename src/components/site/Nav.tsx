@@ -9,7 +9,9 @@ import { useAuth } from "@/lib/auth";
 export function Nav() {
   const { lang, setLang, t } = useI18n();
   const { theme, toggle } = useTheme();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     if (!open) return;
