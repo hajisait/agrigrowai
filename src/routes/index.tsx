@@ -168,7 +168,10 @@ export function Landing() {
           </div>
         </section>
 
+        <Recommendations />
+
         <AdBanner className="mb-4" />
+
 
         <DashboardSchemes />
       </main>
