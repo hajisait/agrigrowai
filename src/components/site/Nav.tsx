@@ -77,6 +77,32 @@ export function Nav() {
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </button>
+          {user ? (
+            <>
+              <Link
+                to="/reminders"
+                aria-label="Reminders"
+                className="hidden sm:grid size-9 rounded-full glass-panel place-items-center text-foreground/80 hover:text-primary transition"
+              >
+                <BellRing className="size-4" />
+              </Link>
+              <Link
+                to="/account"
+                aria-label="My account"
+                className="size-9 rounded-full bg-primary text-primary-foreground grid place-items-center hover:opacity-90 transition"
+              >
+                <User className="size-4" />
+              </Link>
+            </>
+          ) : (
+            <Link
+              to="/auth"
+              className="rounded-full bg-primary text-primary-foreground px-3 sm:px-4 py-2 text-xs font-bold whitespace-nowrap"
+            >
+              {t("nav.signin")}
+            </Link>
+          )}
+
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
