@@ -10,9 +10,9 @@ export function Footer() {
             <span className="size-7 rounded-md bg-primary text-primary-foreground grid place-items-center">
               <Leaf className="size-3.5" />
             </span>
-            <span className="font-extrabold tracking-tight text-lg">AgriAI Assist</span>
+            <span className="font-extrabold tracking-tight text-lg">AgriGrow AI</span>
           </div>
-          <p className="text-xs text-foreground/50">Empowering 20 million+ farmers across India.</p>
+          <p className="text-xs text-foreground/50">AgriGrow AI (AgriAI Assist) — empowering 20 million+ farmers across India.</p>
         </div>
         <div className="flex gap-6 md:gap-8 text-xs font-bold text-foreground/60">
           <Link to="/privacy" className="hover:text-primary">Privacy</Link>
@@ -26,7 +26,7 @@ export function Footer() {
         </div>
       </div>
       <div className="text-center mt-10 text-[10px] text-foreground/30 font-mono">
-        © 2026 AgriAI Assist Technologies Pvt. Ltd. · All Rights Reserved
+        © 2026 AgriGrow AI · AgriAI Assist · All Rights Reserved
       </div>
     </footer>
   );

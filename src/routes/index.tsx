@@ -15,13 +15,13 @@ import cropLeaf from "@/assets/crop-leaf.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AgriAI Assist — Smart AI Farming Assistant" },
+      { title: "AgriGrow AI (AgriAI Assist) — Smart AI Farming Assistant" },
       {
         name: "description",
         content:
-          "AI-powered farming advisor: live weather, crop disease detection, market prices, government schemes & multilingual voice assistant.",
+          "AgriGrow AI is an AI-powered farming advisor: live weather, crop disease detection, market prices, government schemes & multilingual voice assistant.",
       },
-      { property: "og:title", content: "AgriAI Assist — Smart AI Farming Assistant" },
+      { property: "og:title", content: "AgriGrow AI (AgriAI Assist) — Smart AI Farming Assistant" },
       { property: "og:description", content: "AI-powered farming advisor for modern Indian agriculture." },
       { property: "og:image", content: heroField },
       { property: "og:type", content: "website" },
