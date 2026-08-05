@@ -26,7 +26,7 @@ export function Footer() {
         </div>
       </div>
       <div className="text-center mt-10 text-[10px] text-foreground/30 font-mono">
-        © 2026 AgriAI Assist Technologies Pvt. Ltd. · All Rights Reserved
+        © 2026 AgriGrow AI · AgriAI Assist · All Rights Reserved
       </div>
     </footer>
   );
