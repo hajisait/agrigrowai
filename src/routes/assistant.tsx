@@ -9,11 +9,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/assistant")({
   head: () => ({
     meta: [
-      { title: "AI Assistant — AgriAI Assist" },
-      { name: "description", content: "Ask farming questions and get instant AI-powered advice in your language." },
-      { property: "og:title", content: "AI Assistant — AgriAI Assist" },
-      { property: "og:description", content: "Ask farming questions and get instant AI-powered advice." },
+      { title: "AgriAI Assistant — Farming Advice in Your Language" },
+      { name: "description", content: "Ask AgriAI about crops, soil, pests, climate, districts, farming seasons and Indian government schemes." },
+      { property: "og:title", content: "AgriAI Assistant — Farming Advice in Your Language" },
+      { property: "og:description", content: "Ask practical questions about Indian farming, crops, soil, weather and schemes." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/assistant" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/assistant" }],
   }),
   component: AssistantPage,
 });

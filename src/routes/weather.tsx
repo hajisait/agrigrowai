@@ -9,11 +9,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/weather")({
   head: () => ({
     meta: [
-      { title: "Live Weather — AgriAI Assist" },
-      { name: "description", content: "Real-time village-level weather, forecasts, and rain alerts for farmers." },
-      { property: "og:title", content: "Live Weather — AgriAI Assist" },
-      { property: "og:description", content: "Real-time village-level weather and rain alerts." },
+      { title: "Indian Farm Weather — District Forecasts | AgriAI" },
+      { name: "description", content: "Check current weather, rainfall, temperature, wind and farm forecasts for Indian cities, districts and villages." },
+      { property: "og:title", content: "Indian Farm Weather — District Forecasts | AgriAI" },
+      { property: "og:description", content: "Weather and rain forecasts for Indian farmers, villages, districts and cities." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/weather" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/weather" }],
   }),
   component: WeatherPage,
 });

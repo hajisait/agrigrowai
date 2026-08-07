@@ -9,11 +9,14 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/disease")({
   head: () => ({
     meta: [
-      { title: "Crop Disease Detection — AgriAI Assist" },
-      { name: "description", content: "Upload a crop leaf photo for AI-powered disease detection, treatment, and prevention advice." },
-      { property: "og:title", content: "Crop Disease Detection — AgriAI Assist" },
-      { property: "og:description", content: "Upload a crop leaf photo for AI disease detection and treatment." },
+      { title: "Crop Disease Detection AI — Rice, Tomato & More | AgriAI" },
+      { name: "description", content: "Upload a crop leaf photo to identify common plant diseases and get practical treatment and prevention guidance." },
+      { property: "og:title", content: "Crop Disease Detection AI — Rice, Tomato & More | AgriAI" },
+      { property: "og:description", content: "AI crop disease identification with treatment and prevention advice for Indian farmers." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/disease" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/disease" }],
   }),
   component: DiseasePage,
 });

@@ -15,19 +15,36 @@ import cropLeaf from "@/assets/crop-leaf.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AgriGrow AI (AgriAI Assist) — Smart AI Farming Assistant" },
+      { title: "AgriAI — AI Farming Assistant for Indian Farmers" },
       {
         name: "description",
         content:
-          "AgriGrow AI is an AI-powered farming advisor: live weather, crop disease detection, market prices, government schemes & multilingual voice assistant.",
+          "AgriAI by AgriGrow AI helps Indian farmers with crop advice, disease detection, live weather, mandi prices, soil, fertilizer, schemes and profit tools.",
       },
-      { property: "og:title", content: "AgriGrow AI (AgriAI Assist) — Smart AI Farming Assistant" },
-      { property: "og:description", content: "AI-powered farming advisor for modern Indian agriculture." },
-      { property: "og:image", content: heroField },
+      { property: "og:title", content: "AgriAI — AI Farming Assistant for Indian Farmers" },
+      { property: "og:description", content: "Practical AI farming advice, crop tools, weather, mandi prices and government schemes for India." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: heroField },
+      { name: "twitter:title", content: "AgriAI — AI Farming Assistant for Indian Farmers" },
+      { name: "twitter:description", content: "Practical AI farming advice and crop tools for Indian farmers." },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/" }],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "AgriAI",
+        alternateName: ["AgriGrow AI", "AgriAI Assist"],
+        url: "https://agrigrowai.lovable.app/",
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web",
+        inLanguage: ["en", "hi", "ta", "te", "ml"],
+        description: "AI farming assistant for crop advice, disease detection, weather, mandi prices, soil and government schemes in India.",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+      }),
+    }],
   }),
   component: Landing,
 });

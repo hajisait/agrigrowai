@@ -9,11 +9,14 @@ import { getMarketPrices, type MarketCrop } from "@/lib/api-client";
 export const Route = createFileRoute("/market")({
   head: () => ({
     meta: [
-      { title: "Market Prices — AgriAI Assist" },
-      { name: "description", content: "Live mandi prices, trends and nearby market comparison for major crops across Indian states." },
-      { property: "og:title", content: "Market Prices — AgriAI Assist" },
-      { property: "og:description", content: "Live mandi prices and price trends for farmers." },
+      { title: "Mandi Crop Prices in India — Rice, Wheat & More | AgriAI" },
+      { name: "description", content: "Explore crop and mandi prices, trends and state-wise market comparisons for rice, wheat, tomato, onion and more." },
+      { property: "og:title", content: "Mandi Crop Prices in India — Rice, Wheat & More | AgriAI" },
+      { property: "og:description", content: "Compare Indian crop market prices and mandi trends by state." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/market" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/market" }],
   }),
   component: MarketPage,
 });
