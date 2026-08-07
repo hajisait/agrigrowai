@@ -10,11 +10,14 @@ import { Beaker, Sprout, Lock, Sparkles, Info } from "lucide-react";
 export const Route = createFileRoute("/fertilizer")({
   head: () => ({
     meta: [
-      { title: "Fertilizer & Pesticide Calculator — AgriAI Assist" },
-      { name: "description", content: "Precise NPK, urea, DAP and pesticide dosage for 17+ Indian crops." },
-      { property: "og:title", content: "Fertilizer Calculator — AgriAI Assist" },
-      { property: "og:description", content: "ICAR-based fertilizer & pesticide schedules for Indian farmers." },
+      { title: "Fertilizer Calculator for Indian Crops — AgriAI" },
+      { name: "description", content: "Calculate NPK, urea, DAP, MOP and pesticide doses for Indian crops using crop area and soil type." },
+      { property: "og:title", content: "Fertilizer Calculator for Indian Crops — AgriAI" },
+      { property: "og:description", content: "Practical fertilizer and pesticide dosage planning for Indian farmers." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/fertilizer" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/fertilizer" }],
   }),
   component: FertilizerPage,
 });

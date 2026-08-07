@@ -21,11 +21,14 @@ import {
 export const Route = createFileRoute("/calculator")({
   head: () => ({
     meta: [
-      { title: "Crop Profit Calculator — AgriAI Assist" },
-      { name: "description", content: "Estimate crop revenue, costs and net profit before you sow." },
-      { property: "og:title", content: "Crop Profit Calculator — AgriAI Assist" },
-      { property: "og:description", content: "Estimate crop revenue, costs and net profit." },
+      { title: "Crop Profit Calculator India — Revenue & Costs | AgriAI" },
+      { name: "description", content: "Estimate crop yield, mandi revenue, cultivation costs and net profit for Indian farms in rupees per acre." },
+      { property: "og:title", content: "Crop Profit Calculator India — Revenue & Costs | AgriAI" },
+      { property: "og:description", content: "Plan crop revenue, costs and estimated profit before sowing." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/calculator" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/calculator" }],
   }),
   component: CalculatorPage,
 });

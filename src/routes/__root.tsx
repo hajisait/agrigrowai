@@ -73,18 +73,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AgriAI Assist — Smart Farming Advisory" },
-      { name: "description", content: "AgriAI Assist is a modern, AI-powered web application that provides farmers with comprehensive advisory services." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "AgriAI Assist — Smart Farming Advisory" },
-      { property: "og:description", content: "AgriAI Assist is a modern, AI-powered web application that provides farmers with comprehensive advisory services." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "AgriAI Assist — Smart Farming Advisory" },
-      { name: "twitter:description", content: "AgriAI Assist is a modern, AI-powered web application that provides farmers with comprehensive advisory services." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b3254117-5392-487e-b279-dfce142b5958/id-preview-3935d2a6--d5a9f1e4-f445-43be-992d-c4f841e03ca5.lovable.app-1780666044329.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b3254117-5392-487e-b279-dfce142b5958/id-preview-3935d2a6--d5a9f1e4-f445-43be-992d-c4f841e03ca5.lovable.app-1780666044329.png" },
+      { property: "og:site_name", content: "AgriGrow AI" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {

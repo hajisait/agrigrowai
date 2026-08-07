@@ -9,11 +9,14 @@ import { getSchemes, type Scheme } from "@/lib/api-client";
 export const Route = createFileRoute("/schemes")({
   head: () => ({
     meta: [
-      { title: "Government Schemes — AgriAI Assist" },
-      { name: "description", content: "Discover government schemes, subsidies, insurance and loans available to Indian farmers." },
-      { property: "og:title", content: "Government Schemes — AgriAI Assist" },
-      { property: "og:description", content: "Government schemes, subsidies and insurance for farmers." },
+      { title: "Indian Government Schemes for Farmers — AgriAI" },
+      { name: "description", content: "Find PM-KISAN, crop insurance, subsidies, loans and state government schemes for farmers across India." },
+      { property: "og:title", content: "Indian Government Schemes for Farmers — AgriAI" },
+      { property: "og:description", content: "Search farmer subsidies, insurance, loans and government benefits by state." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/schemes" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/schemes" }],
   }),
   component: SchemesPage,
 });

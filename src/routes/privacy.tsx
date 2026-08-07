@@ -5,17 +5,19 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — AgriAI Assist" },
+      { title: "Privacy Policy — AgriAI" },
       {
         name: "description",
         content:
-          "How AgriAI Assist handles farmer data, location, uploaded crop photos, cookies and advertising partners.",
+          "Read how AgriAI handles farmer data, locations, uploaded crop photos, cookies and advertising partners.",
       },
-      { property: "og:title", content: "Privacy Policy — AgriAI Assist" },
-      { property: "og:description", content: "Our data, cookie and advertising practices explained simply." },
+      { property: "og:title", content: "Privacy Policy — AgriAI" },
+      { property: "og:description", content: "AgriAI data, cookie and advertising practices explained simply." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/privacy" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/privacy" }],
   }),
   component: PrivacyPage,
 });

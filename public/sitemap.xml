@@ -11,7 +11,6 @@
   <url><loc>https://agrigrowai.lovable.app/soil</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://agrigrowai.lovable.app/calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://agrigrowai.lovable.app/alerts</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://agrigrowai.lovable.app/reminders</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://agrigrowai.lovable.app/auth</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://agrigrowai.lovable.app/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://agrigrowai.lovable.app/pricing</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://agrigrowai.lovable.app/privacy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>
