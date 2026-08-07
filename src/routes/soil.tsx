@@ -10,11 +10,14 @@ import { FlaskConical, Upload, Lock, Sparkles, Loader2 } from "lucide-react";
 export const Route = createFileRoute("/soil")({
   head: () => ({
     meta: [
-      { title: "Soil Test Report Reader — AgriAI Assist" },
-      { name: "description", content: "Upload your Soil Health Card and get AI-powered fertilizer & amendment recommendations." },
-      { property: "og:title", content: "Soil Report Reader — AgriAI Assist" },
-      { property: "og:description", content: "AI reads your Soil Health Card and tells you exactly what to add." },
+      { title: "AI Soil Test Report Reader for Farmers — AgriAI" },
+      { name: "description", content: "Upload an Indian Soil Health Card to understand pH, NPK, micronutrients and recommended soil amendments." },
+      { property: "og:title", content: "AI Soil Test Report Reader for Farmers — AgriAI" },
+      { property: "og:description", content: "Understand soil test results and improve fertilizer decisions with AI guidance." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/soil" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/soil" }],
   }),
   component: SoilPage,
 });

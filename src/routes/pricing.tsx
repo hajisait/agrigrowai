@@ -8,11 +8,14 @@ import { Check, Sparkles, Crown, Zap } from "lucide-react";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "AgriAI Pro — Pricing & Plans" },
-      { name: "description", content: "Unlock unlimited AI queries, soil report analysis, full crop calendar and price alerts." },
-      { property: "og:title", content: "AgriAI Pro — Pricing" },
-      { property: "og:description", content: "Affordable premium plans for Indian farmers." },
+      { title: "AgriAI Plans — Free Farming Tools for India" },
+      { name: "description", content: "Explore AgriAI features for crop advice, disease scans, soil reports, crop calendars, weather and mandi tools." },
+      { property: "og:title", content: "AgriAI Plans — Free Farming Tools for India" },
+      { property: "og:description", content: "See the farming tools and services available from AgriAI." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/pricing" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/pricing" }],
   }),
   component: PricingPage,
 });

@@ -10,11 +10,14 @@ import { CalendarDays, Sparkles, Lock, Download } from "lucide-react";
 export const Route = createFileRoute("/calendar")({
   head: () => ({
     meta: [
-      { title: "Crop Calendar & Sowing Advisor — AgriAI Assist" },
-      { name: "description", content: "State-wise month-by-month sowing, fertilizer and harvest schedule for Indian crops." },
-      { property: "og:title", content: "Crop Calendar — AgriAI Assist" },
-      { property: "og:description", content: "12-month cropping timeline for India." },
+      { title: "Crop Calendar & Sowing Guide for India — AgriAI" },
+      { name: "description", content: "Plan sowing, fertilizer, irrigation and harvest activities with a month-by-month crop calendar for India." },
+      { property: "og:title", content: "Crop Calendar & Sowing Guide for India — AgriAI" },
+      { property: "og:description", content: "Month-by-month crop planning for Indian farming seasons." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/calendar" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/calendar" }],
   }),
   component: CalendarPage,
 });

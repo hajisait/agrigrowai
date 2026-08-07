@@ -9,11 +9,14 @@ import { Bell, Trash2, Plus, Lock, Sparkles, TrendingUp, TrendingDown } from "lu
 export const Route = createFileRoute("/alerts")({
   head: () => ({
     meta: [
-      { title: "Mandi Price Alerts — AgriAI Assist" },
-      { name: "description", content: "Get alerted when your crop crosses your target mandi price." },
-      { property: "og:title", content: "Price Alerts — AgriAI Assist" },
-      { property: "og:description", content: "Save crops, set thresholds, receive alerts." },
+      { title: "Mandi Price Alerts for Farmers — AgriAI" },
+      { name: "description", content: "Track target prices for crops and receive reminders when Indian mandi prices move above or below your threshold." },
+      { property: "og:title", content: "Mandi Price Alerts for Farmers — AgriAI" },
+      { property: "og:description", content: "Set crop price targets and keep up with mandi market changes." },
+      { property: "og:url", content: "https://agrigrowai.lovable.app/alerts" },
+      { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: "https://agrigrowai.lovable.app/alerts" }],
   }),
   component: AlertsPage,
 });
