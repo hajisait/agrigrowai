@@ -21,7 +21,7 @@ import { PromoPopup } from "@/components/site/PromoPopup";
 
 function Routes() {
   const { path } = useSpaRouter();
-  if (path === "/assistant") return <AssistantPage />;
+  if (path === "/assistant" || path.startsWith("/assistant/")) return <AssistantPage />;
   if (path === "/calculator") return <CalculatorPage />;
   if (path === "/disease") return <DiseasePage />;
   if (path === "/market") return <MarketPage />;
