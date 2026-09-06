@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BellRing, Leaf, Menu, Moon, Sun, User, X } from "lucide-react";
+import { BellRing, History, Leaf, Menu, Moon, Sun, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LANGS, useI18n, type Lang } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
@@ -80,6 +80,13 @@ export function Nav() {
           {user ? (
             <>
               <Link
+                to="/assistant"
+                aria-label="Saved chats"
+                className="hidden sm:grid size-9 rounded-full glass-panel place-items-center text-foreground/80 hover:text-primary transition"
+              >
+                <History className="size-4" />
+              </Link>
+              <Link
                 to="/reminders"
                 aria-label="Reminders"
                 className="hidden sm:grid size-9 rounded-full glass-panel place-items-center text-foreground/80 hover:text-primary transition"
@@ -139,6 +146,13 @@ export function Nav() {
           ))}
           {user ? (
             <>
+              <Link
+                to="/assistant"
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 rounded-xl text-base font-semibold text-foreground/85 hover:bg-primary/10 hover:text-primary transition"
+              >
+                Saved chats
+              </Link>
               <Link
                 to="/reminders"
                 onClick={() => setOpen(false)}
