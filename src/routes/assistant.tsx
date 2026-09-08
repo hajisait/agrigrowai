@@ -197,9 +197,9 @@ export function AssistantPage() {
     setLoading(true);
     inputRef.current?.focus();
 
-    if (user && threadId) {
+    if (userId && threadId) {
       try {
-        await saveChatMessage({ threadId, userId: userId ?? "", role: "user", content });
+        await saveChatMessage({ threadId, userId, role: "user", content });
         const current = threads.find((thread) => thread.id === threadId);
         if (current?.title === "New farming chat") {
           const updated = await updateChatThread(threadId, { title: titleFor(content) });
@@ -217,9 +217,9 @@ export function AssistantPage() {
       const reply = res.reply || "I couldn't generate a response. Please try again.";
       setMessages([...next, { role: "assistant", content: reply }]);
       trackSessionQuery();
-      if (user && threadId) {
+      if (userId && threadId) {
         try {
-          await saveChatMessage({ threadId, userId: userId ?? "", role: "assistant", content: reply });
+          await saveChatMessage({ threadId, userId, role: "assistant", content: reply });
         } catch (error) {
           setNotice(error instanceof Error ? `Answer shown, but saving failed: ${error instanceof Error ? error.message : "unknown error"}` : "Answer shown, but saving failed.");
         }
