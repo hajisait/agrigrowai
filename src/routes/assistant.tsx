@@ -77,6 +77,7 @@ function formatThreadDate(value: string) {
 export function AssistantPage() {
   const { t, lang } = useI18n();
   const { user } = useAuth();
+  const userId = user?.id;
   const { path, navigate } = useSpaRouter();
   const threadId = threadIdFromPath(path);
   const [messages, setMessages] = useState<Msg[]>([WELCOME]);
@@ -100,14 +101,15 @@ export function AssistantPage() {
   }, [threadId]);
 
   useEffect(() => {
-    if (!user) {
+    if (!userId) {
       bootRef.current = "";
       setThreads([]);
       setMessages([WELCOME]);
       return;
     }
+    const authenticatedUserId = userId;
 
-    const bootKey = `${user.id}:${threadId ?? "root"}`;
+    const bootKey = `${authenticatedUserId}:${threadId ?? "root"}`;
     if (bootRef.current === bootKey) return;
     bootRef.current = bootKey;
     let cancelled = false;
@@ -125,7 +127,7 @@ export function AssistantPage() {
           if (first) {
             navigate(`/assistant/${first.id}`);
           } else {
-            const created = await createChatThread(user.id);
+            const created = await createChatThread(authenticatedUserId);
             if (!cancelled) {
               setThreads([created]);
               navigate(`/assistant/${created.id}`);
@@ -154,7 +156,7 @@ export function AssistantPage() {
 
     void initialize();
     return () => { cancelled = true; };
-  }, [navigate, threadId, user]);
+  }, [navigate, threadId, userId]);
 
   async function startNewChat() {
     if (!user) {
@@ -195,9 +197,9 @@ export function AssistantPage() {
     setLoading(true);
     inputRef.current?.focus();
 
-    if (user && threadId) {
+    if (userId && threadId) {
       try {
-        await saveChatMessage({ threadId, userId: user.id, role: "user", content });
+        await saveChatMessage({ threadId, userId, role: "user", content });
         const current = threads.find((thread) => thread.id === threadId);
         if (current?.title === "New farming chat") {
           const updated = await updateChatThread(threadId, { title: titleFor(content) });
@@ -215,9 +217,9 @@ export function AssistantPage() {
       const reply = res.reply || "I couldn't generate a response. Please try again.";
       setMessages([...next, { role: "assistant", content: reply }]);
       trackSessionQuery();
-      if (user && threadId) {
+      if (userId && threadId) {
         try {
-          await saveChatMessage({ threadId, userId: user.id, role: "assistant", content: reply });
+          await saveChatMessage({ threadId, userId, role: "assistant", content: reply });
         } catch (error) {
           setNotice(error instanceof Error ? `Answer shown, but saving failed: ${error instanceof Error ? error.message : "unknown error"}` : "Answer shown, but saving failed.");
         }
