@@ -77,6 +77,7 @@ function formatThreadDate(value: string) {
 export function AssistantPage() {
   const { t, lang } = useI18n();
   const { user } = useAuth();
+  const userId = user?.id;
   const { path, navigate } = useSpaRouter();
   const threadId = threadIdFromPath(path);
   const [messages, setMessages] = useState<Msg[]>([WELCOME]);
@@ -100,14 +101,14 @@ export function AssistantPage() {
   }, [threadId]);
 
   useEffect(() => {
-    if (!user) {
+    if (!userId) {
       bootRef.current = "";
       setThreads([]);
       setMessages([WELCOME]);
       return;
     }
 
-    const bootKey = `${user.id}:${threadId ?? "root"}`;
+    const bootKey = `${userId}:${threadId ?? "root"}`;
     if (bootRef.current === bootKey) return;
     bootRef.current = bootKey;
     let cancelled = false;
@@ -125,7 +126,7 @@ export function AssistantPage() {
           if (first) {
             navigate(`/assistant/${first.id}`);
           } else {
-            const created = await createChatThread(user.id);
+            const created = await createChatThread(userId);
             if (!cancelled) {
               setThreads([created]);
               navigate(`/assistant/${created.id}`);
@@ -154,7 +155,7 @@ export function AssistantPage() {
 
     void initialize();
     return () => { cancelled = true; };
-  }, [navigate, threadId, user]);
+  }, [navigate, threadId, userId]);
 
   async function startNewChat() {
     if (!user) {
