@@ -107,8 +107,9 @@ export function AssistantPage() {
       setMessages([WELCOME]);
       return;
     }
+    const authenticatedUserId = userId;
 
-    const bootKey = `${userId}:${threadId ?? "root"}`;
+    const bootKey = `${authenticatedUserId}:${threadId ?? "root"}`;
     if (bootRef.current === bootKey) return;
     bootRef.current = bootKey;
     let cancelled = false;
@@ -126,7 +127,7 @@ export function AssistantPage() {
           if (first) {
             navigate(`/assistant/${first.id}`);
           } else {
-            const created = await createChatThread(userId);
+            const created = await createChatThread(authenticatedUserId);
             if (!cancelled) {
               setThreads([created]);
               navigate(`/assistant/${created.id}`);
@@ -198,7 +199,7 @@ export function AssistantPage() {
 
     if (user && threadId) {
       try {
-        await saveChatMessage({ threadId, userId: user.id, role: "user", content });
+        await saveChatMessage({ threadId, userId: userId ?? "", role: "user", content });
         const current = threads.find((thread) => thread.id === threadId);
         if (current?.title === "New farming chat") {
           const updated = await updateChatThread(threadId, { title: titleFor(content) });
@@ -218,7 +219,7 @@ export function AssistantPage() {
       trackSessionQuery();
       if (user && threadId) {
         try {
-          await saveChatMessage({ threadId, userId: user.id, role: "assistant", content: reply });
+          await saveChatMessage({ threadId, userId: userId ?? "", role: "assistant", content: reply });
         } catch (error) {
           setNotice(error instanceof Error ? `Answer shown, but saving failed: ${error instanceof Error ? error.message : "unknown error"}` : "Answer shown, but saving failed.");
         }
